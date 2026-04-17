@@ -7,3 +7,4 @@ firmware
 zephyr
 zmk
 draw/base.yaml
+draw/*.txt
