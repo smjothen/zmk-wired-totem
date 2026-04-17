@@ -12,6 +12,12 @@
         zmk,matrix_transform = &default_transform;
     };
 
+    wired_split: wired_split {
+        compatible = "zmk,wired-split";
+        device = <&xiao_serial>;
+        half-duplex;
+    };
+
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <10>;

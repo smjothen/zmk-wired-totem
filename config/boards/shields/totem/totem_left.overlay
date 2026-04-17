@@ -6,6 +6,18 @@
 
 #include "totem.dtsi"
 
+&usbd {
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
+/ {
+    chosen {
+        zephyr,console = &cdc_acm_uart;
+    };
+};
+
 &kscan0 {
     col-gpios
         = <&xiao_d 4 GPIO_ACTIVE_HIGH>

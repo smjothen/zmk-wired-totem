@@ -19,3 +19,50 @@
         , <&xiao_d 4 GPIO_ACTIVE_HIGH>
         ;
 };
+
+/*
+ * PIO UART with swapped TX/RX pins to compensate for the TRRS
+ * straight-through wiring (TX↔TX, RX↔RX instead of TX↔RX crossover).
+ *
+ * Left (central) uses hardware UART0: TX=GP0, RX=GP1
+ * Right (peripheral) uses PIO UART:   TX=GP1, RX=GP0
+ *
+ * TRRS wires: GP0↔GP0, GP1↔GP1
+ * Result: Left TX(GP0) → wire → Right RX(GP0) ✓
+ *         Right TX(GP1) → wire → Left RX(GP1) ✓
+ */
+
+&pinctrl {
+    pio1_uart_default: pio1_uart_default {
+        rx_pins {
+            pinmux = <PIO1_P0>;   /* GP0 = RX (receives from left's TX on GP0) */
+            input-enable;
+            bias-pull-up;
+        };
+        tx_pins {
+            pinmux = <PIO1_P1>;   /* GP1 = TX (sends to left's RX on GP1) */
+        };
+    };
+};
+
+&pio1 {
+    status = "okay";
+
+    pio_uart: pio_uart {
+        compatible = "raspberrypi,pico-uart-pio";
+        pinctrl-0 = <&pio1_uart_default>;
+        pinctrl-names = "default";
+        current-speed = <115200>;
+        status = "okay";
+    };
+};
+
+/* Disable hardware UART0 on the right half since we use PIO UART instead */
+&uart0 {
+    status = "disabled";
+};
+
+/* Override the wired_split device to use PIO UART */
+&wired_split {
+    device = <&pio_uart>;
+};

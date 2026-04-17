@@ -1,0 +1,9 @@
+.direnv
+.build
+build
+.west
+modules
+firmware
+zephyr
+zmk
+draw/base.yaml
