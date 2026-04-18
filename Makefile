@@ -47,9 +47,9 @@ $(UF2_RIGHT): $(wildcard $(SHIELD_DIR)/*) $(wildcard config/*.conf)
 	west build -s $(ZMK_APP) -d build/right -b $(BOARD) -- \
 		-DSHIELD=totem_right -DZMK_CONFIG="$(ZMK_CONFIG)"
 
-$(DRAW_YAML): $(KEYMAP_SRCS) $(DRAW_CONFIG)
+$(DRAW_YAML): $(KEYMAP_SRCS) $(DRAW_CONFIG) draw/combo_layer.py
 	@mkdir -p draw
-	keymap -c $(DRAW_CONFIG) parse -z $(KEYMAP) -c 10 > $@
+	keymap -c $(DRAW_CONFIG) parse -z $(KEYMAP) -c 10 | python3 draw/combo_layer.py > $@
 
 $(DRAW_SVG): $(DRAW_YAML)
 	keymap -c $(DRAW_CONFIG) draw $< > $@

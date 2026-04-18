@@ -225,114 +225,119 @@ layers:
     - Scroll ↑
     - Scroll ↓
     - ''
+  Combos:
+  - ['', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '']
 combos:
 - p: [1, 2]
   k: Esc
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [2, 3]
   k: Smart Mouse
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [11, 12]
   k: Tab
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [12, 13]
   k: Leader
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [11, 12, 13]
   k: Shift+Leader
-  l: [Base, Nav, Num]
+  l: [Combos]
   a: top
   o: 1.35
 - p: [22, 24]
   k: Cut
-  l: [Base, Nav, Num]
+  l: [Combos]
   a: bottom
   o: 0.15
 - p: [22, 23]
   k: Copy
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [23, 24]
   k: Paste
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [6, 7]
   k: Bspc
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [7, 8]
   k: Del
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [16, 17]
   k: {t: (, right: <}
-  l: [Base, Num]
+  l: [Combos]
 - p: [17, 18]
   k: {t: ), right: '>'}
-  l: [Base, Num]
+  l: [Combos]
 - p: [16, 17]
   k: <
-  l: [Nav]
+  l: [Combos]
   hidden: true
 - p: [17, 18]
   k: '>'
-  l: [Nav]
+  l: [Combos]
   hidden: true
 - p: [27, 28]
   k: {t: '[', right: '{'}
-  l: [Base, Num]
+  l: [Combos]
 - p: [28, 29]
   k: {t: ']', right: '}'}
-  l: [Base, Num]
+  l: [Combos]
 - p: [27, 28]
   k: '{'
-  l: [Nav]
+  l: [Combos]
   hidden: true
 - p: [28, 29]
   k: '}'
-  l: [Nav]
+  l: [Combos]
   hidden: true
 - p: [1, 11]
   k: '@'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [2, 12]
   k: '#'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [3, 13]
   k: $
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [4, 14]
   k: '%'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [11, 22]
   k: '`'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [12, 23]
   k: \
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [13, 24]
   k: '='
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [14, 25]
   k: '~'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [5, 15]
   k: ^
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [6, 16]
   k: +
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [7, 17]
   k: '*'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [8, 18]
   k: '&'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [15, 26]
   k: _
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [16, 27]
   k: '-'
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [17, 28]
   k: /
-  l: [Base, Nav, Num]
+  l: [Combos]
 - p: [18, 29]
   k: '|'
-  l: [Base, Nav, Num]
+  l: [Combos]
