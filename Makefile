@@ -61,10 +61,10 @@ clean:
 
 flash-left: $(UF2_LEFT)
 	@test -d $(UF2_VOLUME) || { echo "ERROR: RP2040 not in bootloader mode ($(UF2_VOLUME) not found)"; exit 1; }
-	cp $< $(UF2_VOLUME)/
+	cp -X $< $(UF2_VOLUME)/
 	@echo "Flashed left half"
 
 flash-right: $(UF2_RIGHT)
 	@test -d $(UF2_VOLUME) || { echo "ERROR: RP2040 not in bootloader mode ($(UF2_VOLUME) not found)"; exit 1; }
-	cp $< $(UF2_VOLUME)/
+	cp -X $< $(UF2_VOLUME)/
 	@echo "Flashed right half"

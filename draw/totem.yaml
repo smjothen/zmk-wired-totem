@@ -75,7 +75,7 @@ layers:
     - F8
     - F9
     - {type: trans}
-    - {type: trans}
+    - $$mdi:volume-off$$
     - $$mdi:skip-backward$$
     - $$mdi:volume-high$$
     - $$mdi:skip-forward$$
@@ -85,7 +85,7 @@ layers:
     - {t: F5, h: Gui}
     - {t: F6, h: Shift}
     - {type: trans}
-    - {type: trans}
+    - $$mdi:play-pause$$
     - {t: Prev Desk, h: Ctrl}
     - {t: '$$mdi:volume-medium$$', h: Shift}
     - {t: Next Desk, h: Alt}
@@ -105,8 +105,8 @@ layers:
     - ''
     - {type: trans}
     - {type: held}
-    - $$mdi:volume-off$$
-    - $$mdi:play-pause$$
+    - {type: trans}
+    - {type: trans}
     - ''
   Num:
   - - {type: trans}
@@ -152,8 +152,8 @@ layers:
     - {type: trans}
     - {type: trans}
     - {type: trans}
-    - {type: trans}
-    - {type: trans}
+    - Unlock
+    - Unlock
     - {type: trans}
     - {type: trans}
     - {type: trans}

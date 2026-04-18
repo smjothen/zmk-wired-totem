@@ -6,6 +6,7 @@ parse_config:
     #include <zmk-helpers/key-labels/totem.h>
 
   raw_binding_map:
+    "&studio_unlock": Unlock
     "&sys_reset": Reset
     "&bootloader": Boot
     "&caps_word": Caps Word
