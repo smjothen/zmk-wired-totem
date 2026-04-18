@@ -1,0 +1,12 @@
+# Exclude everything that west manages (fetched inside the container)
+zmk/
+zephyr/
+modules/
+.west/
+build/
+firmware/
+
+# IDE / OS junk
+.direnv
+.DS_Store
+*.swp
