@@ -6,13 +6,36 @@ on:
       - "config/boards/shields/totem/*.keymap"
       - "config/boards/shields/totem/*.dtsi"
       - "keymap_drawer.config.yaml"
+      - "draw/combo_layer.py"
 
 jobs:
   draw:
-    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    with:
-      keymap_patterns: "config/boards/shields/totem/*.keymap"
-      config_path: "keymap_drawer.config.yaml"
-      output_folder: "draw"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install keymap-drawer
+        run: pip install keymap-drawer
+
+      - name: Parse, post-process combos, and draw
+        run: |
+          mkdir -p draw
+          keymap -c keymap_drawer.config.yaml parse \
+            -z config/boards/shields/totem/totem.keymap -c 10 \
+            | python3 draw/combo_layer.py > draw/totem.yaml
+          keymap -c keymap_drawer.config.yaml draw draw/totem.yaml > draw/totem.svg
+
+      - name: Commit updated diagrams
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add draw/totem.yaml draw/totem.svg
+          git diff --cached --quiet || git commit -m "Auto-update keymap diagrams"
+          git pull --rebase
+          git push
