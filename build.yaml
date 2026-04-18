@@ -1,6 +1,6 @@
 include:
-  - board: xiao_rp2040
+  - board: xiao_rp2040//zmk
     shield: totem_left
-  - board: xiao_rp2040
+  - board: xiao_rp2040//zmk
     shield: totem_right
 # there is no settingsreset (needed) for the XIAO
