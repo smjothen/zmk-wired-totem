@@ -23,6 +23,12 @@ jobs:
       - name: Install keymap-drawer
         run: pip install keymap-drawer
 
+      - name: Checkout zmk-helpers (for include files)
+        uses: actions/checkout@v4
+        with:
+          repository: urob/zmk-helpers
+          path: modules/zmk/helpers
+
       - name: Parse, post-process combos, and draw
         run: |
           mkdir -p draw
