@@ -6,6 +6,9 @@
 
 #include "totem.dtsi"
 
+/* Re-enable hardware UART0 for wired split (disabled by the xiao_rp2040//zmk variant) */
+&xiao_serial { status = "okay"; };
+
 &usbd {
     cdc_acm_uart: cdc_acm_uart {
         compatible = "zephyr,cdc-acm-uart";
