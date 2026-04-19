@@ -43,41 +43,14 @@ rect.key, rect.combo {
     stroke-width: 1;
 }
 
-.keypos-10 rect.key,
-.keypos-19 rect.key,
-.keypos-30 rect.key,
+.keypos-32 rect.key,
+.keypos-33 rect.key,
+.keypos-34 rect.key,
+.keypos-35 rect.key,
+.keypos-36 rect.key,
 .keypos-37 rect.key {
     fill: rgb(207, 216, 220);
-}
-
-.keypos-10 rect.key,
-.keypos-19 rect.key {
-    stroke: rgb(236, 239, 241);
-}
-
-.keypos-12 rect.key,
-.keypos-16 rect.key,
-.keypos-31 rect.key,
-.keypos-36 rect.key {
-    fill: rgb(229, 115, 115);
-    stroke: rgb(239, 154, 154);
-}
-
-.keypos-11 rect.key,
-.keypos-18 rect.key,
-.keypos-32 rect.key,
-.keypos-35 rect.key {
-    fill: rgb(128, 203, 196);
-    stroke: rgb(178, 223, 219);
-}
-
-.keypos-30 text,
-.keypos-31 text,
-.keypos-32 text,
-.keypos-35 text,
-.keypos-36 text,
-.keypos-37 text {
-    fill: rgb(38, 50, 56);
+    stroke: rgb(176, 190, 197);
 }
 
 rect.side {
@@ -161,6 +134,15 @@ text.combo.tap {
 use.glyph {
     fill: rgb(38, 50, 56);
     color: rgb(38, 50, 56);
+}
+
+use.left.glyph,
+use.right.glyph,
+use.tl.glyph,
+use.bl.glyph,
+use.br.glyph {
+    fill: rgb(96, 125, 139);
+    color: rgb(96, 125, 139);
 }
 
 use.combo.glyph {

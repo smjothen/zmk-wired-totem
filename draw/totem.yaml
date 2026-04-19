@@ -2,16 +2,16 @@ layout: {zmk_keyboard: totem}
 layers:
   Base:
   - [Q, W, E, R, T, Y, U, I, O, P]
-  - - {t: A, h: '$$mdi:apple-keyboard-option$$'}
-    - {t: S, h: '$$mdi:apple-keyboard-control$$'}
-    - {t: D, h: '$$mdi:apple-keyboard-command$$'}
-    - {t: F, h: '$$mdi:apple-keyboard-shift$$'}
+  - - {t: A, bl: '$$mdi:apple-keyboard-option$$'}
+    - {t: S, bl: '$$mdi:apple-keyboard-control$$'}
+    - {t: D, tl: '$$mdi:apple-keyboard-command$$'}
+    - {t: F, bl: '$$mdi:apple-keyboard-shift$$'}
     - G
     - H
-    - {t: J, h: '$$mdi:apple-keyboard-shift$$'}
-    - {t: K, h: '$$mdi:apple-keyboard-command$$'}
-    - {t: L, h: '$$mdi:apple-keyboard-control$$'}
-    - {t: '''', h: '$$mdi:apple-keyboard-option$$'}
+    - {t: J, br: '$$mdi:apple-keyboard-shift$$'}
+    - {t: K, tl: '$$mdi:apple-keyboard-command$$'}
+    - {t: L, br: '$$mdi:apple-keyboard-control$$'}
+    - {t: '''', br: '$$mdi:apple-keyboard-option$$'}
   - - '`'
     - Z
     - X
