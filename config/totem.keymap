@@ -240,14 +240,14 @@ ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS) // FN + NUM --> SYS.
 ZMK_LAYER(Base,
                 &kp Q         &kp W         &kp E         &kp R         &kp T           &kp Y         &kp U         &kp I         &kp O         &kp P
                 &hml LALT A   &hml LCTRL S  &hml LGUI D   &hml LSHFT F  &kp G           &kp H         &hmr RSHFT J  &hmr RGUI K   &hmr RCTRL L  &hmr RALT SQT
-    &kp GRAVE   &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &comma_morph  &dot_morph    &qexcl        NONE
+    NONE        &kp Z         &kp X         &kp C         &kp V         &kp B           &kp N         &kp M         &comma_morph  &dot_morph    &qexcl        NONE
                                             NONE          &lt_spc NAV 0 &lt FN RET      SMART_NUM     MAGIC_SHIFT   NONE
 )
 
 ZMK_LAYER(Nav,
                 &kp LA(F4)    ___           &kp LS(TAB)   &swapper      ___             &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___
                 &sk LGUI      &sk LALT      &sk LSHFT     &sk LCTRL     ___             &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET
-     ___        ___           ___           ___           ___           ___             &kp INS       &kp TAB       ___           ___           ___           NONE
+     NONE       ___           ___           ___           ___           ___             &kp INS       &kp TAB       ___           ___           ___           NONE
                                             NONE          ___           ___             ___           CANCEL        NONE
 )
 
