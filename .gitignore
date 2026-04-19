@@ -5,6 +5,10 @@ build
 modules
 firmware
 zephyr
+!totem-module/zephyr/
+!totem-module/zephyr/module.yml
+!totem-module/zephyr/CMakeLists.txt
+!totem-module/zephyr/Kconfig
 zmk
 draw/base.yaml
 draw/*.txt

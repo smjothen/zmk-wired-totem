@@ -201,3 +201,196 @@ parse_config:
 
 draw_config:
   dark_mode: true
+  svg_style: |
+    /* force mdi glyph defs to inherit color from glyph references */
+    svg path {
+        fill: inherit;
+    }
+
+    defs svg {
+        overflow: visible;
+    }
+
+    defs svg path {
+        fill: currentColor;
+    }
+
+    svg.keymap {
+        font-family: REM, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 14px;
+        font-kerning: normal;
+        text-rendering: optimizeLegibility;
+        fill: rgb(38, 50, 56);
+    }
+
+    rect.key {
+        fill: rgb(236, 239, 241);
+    }
+
+    rect.key, rect.combo {
+        stroke: white;
+        stroke-width: 1;
+    }
+
+    .keypos-10 rect.key,
+    .keypos-19 rect.key,
+    .keypos-30 rect.key,
+    .keypos-37 rect.key {
+        fill: rgb(207, 216, 220);
+    }
+
+    .keypos-10 rect.key,
+    .keypos-19 rect.key {
+        stroke: rgb(236, 239, 241);
+    }
+
+    .keypos-12 rect.key,
+    .keypos-16 rect.key,
+    .keypos-31 rect.key,
+    .keypos-36 rect.key {
+        fill: rgb(229, 115, 115);
+        stroke: rgb(239, 154, 154);
+    }
+
+    .keypos-11 rect.key,
+    .keypos-18 rect.key,
+    .keypos-32 rect.key,
+    .keypos-35 rect.key {
+        fill: rgb(128, 203, 196);
+        stroke: rgb(178, 223, 219);
+    }
+
+    .keypos-30 text,
+    .keypos-31 text,
+    .keypos-32 text,
+    .keypos-35 text,
+    .keypos-36 text,
+    .keypos-37 text {
+        fill: rgb(38, 50, 56);
+    }
+
+    rect.side {
+        filter: brightness(90%);
+    }
+
+    rect.combo, rect.combo-separate {
+        fill: rgb(207, 216, 220);
+    }
+
+    rect.held, rect.combo.held {
+        fill: rgb(229, 115, 115);
+    }
+
+    rect.ghost, rect.combo.ghost {
+        stroke-dasharray: 4, 4;
+        stroke-width: 2;
+    }
+
+    text {
+        text-anchor: middle;
+        dominant-baseline: middle;
+    }
+
+    text.label {
+        font-weight: bold;
+        text-anchor: start;
+        fill: rgb(120, 144, 156);
+        stroke: white;
+        stroke-width: 4;
+        paint-order: stroke;
+    }
+
+    text.footer {
+        text-anchor: end;
+        dominant-baseline: auto;
+        stroke: white;
+        stroke-width: 4;
+        paint-order: stroke;
+    }
+
+    text.combo, text.hold, text.shifted, text.left, text.right, text.tl, text.tr, text.bl, text.br {
+        font-size: 11px;
+    }
+
+    text.hold, text.shifted, text.left, text.right, text.tl, text.tr, text.bl, text.br {
+        fill: rgb(96, 125, 139);
+    }
+
+    text.hold, text.bl, text.br {
+        text-anchor: middle;
+        dominant-baseline: auto;
+    }
+
+    text.shifted, text.tl, text.tr {
+        text-anchor: middle;
+        dominant-baseline: hanging;
+    }
+
+    text.left, text.tl, text.bl {
+        text-anchor: start;
+    }
+
+    text.right, text.tr, text.br {
+        text-anchor: end;
+    }
+
+    text.layer-activator {
+        text-decoration: underline;
+        fill: rgb(38, 50, 56);
+    }
+
+    text.combo.hold, text.combo.shifted, text.combo.left, text.combo.right {
+        font-size: 8px;
+    }
+
+    text.combo.tap {
+        fill: rgb(55, 71, 79);
+    }
+
+    use.glyph {
+        fill: rgb(38, 50, 56);
+        color: rgb(38, 50, 56);
+    }
+
+    use.combo.glyph {
+        fill: rgb(55, 71, 79);
+        color: rgb(55, 71, 79);
+    }
+
+    text.combo.hold, text.combo.left, text.combo.right {
+        fill: rgb(55, 71, 79);
+    }
+
+    text.combo.shifted {
+        fill: rgb(120, 144, 156);
+    }
+
+    text.trans {
+        fill: rgb(120, 144, 156);
+        opacity: 0.4;
+    }
+
+    path.combo {
+        stroke-width: 1;
+        stroke: rgb(207, 216, 220);
+        fill: none;
+    }
+
+    .icon-tabler > path {
+        fill: inherit;
+        stroke: inherit;
+        stroke-width: 2;
+    }
+
+    .icon-tabler > path[stroke="none"][fill="none"] {
+        visibility: hidden;
+    }
+  svg_style_dark: |
+    svg.keymap { fill: rgb(38, 50, 56); }
+    rect.key { fill: rgb(236, 239, 241); }
+    rect.key, rect.combo { stroke: white; }
+    rect.combo, rect.combo-separate { fill: rgb(207, 216, 220); stroke: rgb(207, 216, 220); }
+    rect.held, rect.combo.held { fill: rgb(229, 115, 115); }
+    text.label, text.footer { stroke: white; }
+    text.trans { fill: rgb(120, 144, 156); opacity: 0.4; }
+    path.combo { stroke: rgb(207, 216, 220); }
