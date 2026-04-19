@@ -12,33 +12,18 @@
 #   firmware/totem_left.uf2, firmware/totem_right.uf2
 #   firmware/totem.svg, firmware/totem.yaml
 
-# ── Stage 1: Python 3.12 + Zephyr SDK + build tools ─────────────────────────
+# ── Stage 1: ZMK build image + keymap-drawer ────────────────────────────────
 
-FROM python:3.12-slim AS base
+FROM zmkfirmware/zmk-build-arm:3.5 AS base
 
-# Install system build dependencies.
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git cmake ninja-build gperf ccache device-tree-compiler wget xz-utils \
-    file make gcc g++ libmagic1 \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Zephyr SDK (arm toolchain only — RP2040 uses the ARM core).
-ARG ZEPHYR_SDK_VERSION=0.17.0
-ARG ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-${ZEPHYR_SDK_VERSION}
-RUN wget -q "https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZEPHYR_SDK_VERSION}/zephyr-sdk-${ZEPHYR_SDK_VERSION}_linux-$(uname -m)_minimal.tar.xz" \
-    && tar xf zephyr-sdk-*.tar.xz -C /opt \
-    && rm zephyr-sdk-*.tar.xz \
-    && ${ZEPHYR_SDK_INSTALL_DIR}/setup.sh -t arm-zephyr-eabi -c
-
-ENV ZEPHYR_SDK_INSTALL_DIR=${ZEPHYR_SDK_INSTALL_DIR}
-
-# Install Python packages.
-RUN pip install --no-cache-dir \
-    west \
-    keymap-drawer==0.23.0 \
-    protobuf \
-    grpcio-tools \
-    pyelftools
+# Install pip and Python packages for keymap drawing.
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pip \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir --break-system-packages \
+        keymap-drawer==0.23.0 \
+        protobuf \
+        grpcio-tools \
+        pyelftools
 
 # ── Stage 2: Workspace init + west update ────────────────────────────────────
 

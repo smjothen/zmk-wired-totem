@@ -16,7 +16,7 @@
     wired_split: wired_split {
         compatible = "zmk,wired-split";
         device = <&xiao_serial>;
-        half-duplex;
+        // half-duplex;
     };
 
     default_transform: keymap_transform_0 {
