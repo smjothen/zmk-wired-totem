@@ -62,8 +62,9 @@ COPY totem-module/ totem-module/
 COPY keymap_drawer.config.yaml .
 COPY draw/ draw/
 
+ARG BOARD=xiao_rp2040//zmk
 ENV ZMK_APP=zmk/app
-ENV BOARD=xiao_rp2040
+ENV BOARD=${BOARD}
 ENV ZMK_CONFIG=/zmk-config/config
 ENV KEYMAP_FILE=config/totem.keymap
 ENV ZMK_EXTRA_MODULES=/zmk-config/totem-module

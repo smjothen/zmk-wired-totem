@@ -12,6 +12,7 @@
 SHELL := /bin/bash
 
 DOCKER_IMG := totem-zmk
+BOARD := xiao_rp2040//zmk
 OUTDIR := $(CURDIR)/firmware
 STRIP_SVG_LABELS ?= layer
 UF2_LEFT := $(OUTDIR)/totem_left.uf2
@@ -58,4 +59,4 @@ $(UF2_RIGHT):
 	@$(MAKE) right
 
 docker-build:
-	docker build -t $(DOCKER_IMG) .
+	docker build --build-arg BOARD="$(BOARD)" -t $(DOCKER_IMG) .
