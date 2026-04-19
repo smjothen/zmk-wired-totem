@@ -56,16 +56,19 @@ RUN west init -l config && west update && west zephyr-export
 
 FROM workspace AS builder
 
-# Copy full config tree (shield files, keymap, confs, draw scripts).
+# Copy full config tree, module, and draw scripts.
 COPY config/ config/
+COPY totem-module/ totem-module/
 COPY keymap_drawer.config.yaml .
 COPY draw/ draw/
 
 ENV ZMK_APP=zmk/app
 ENV BOARD=xiao_rp2040
 ENV ZMK_CONFIG=/zmk-config/config
-ENV SHIELD_DIR=config/boards/shields/totem
+ENV KEYMAP_FILE=config/totem.keymap
+ENV ZMK_EXTRA_MODULES=/zmk-config/totem-module
 ENV ZEPHYR_BASE=/zmk-config/zephyr
+ENV STRIP_SVG_LABELS=layer
 
 # Build script: accepts "left", "right", "draw", "all" (default: "all").
 COPY <<'ENTRYPOINT' /usr/local/bin/build.sh
@@ -78,7 +81,8 @@ OUTDIR="/out"
 build_left() {
     echo "=== Building left half ==="
     west build -s "$ZMK_APP" -d build/left -b "$BOARD" -- \
-        -DSHIELD=totem_left -DZMK_CONFIG="$ZMK_CONFIG"
+        -DSHIELD=totem_left -DZMK_CONFIG="$ZMK_CONFIG" \
+        -DZMK_EXTRA_MODULES="$ZMK_EXTRA_MODULES"
     cp build/left/zephyr/zmk.uf2 "$OUTDIR/totem_left.uf2"
     echo "=== Left half: $OUTDIR/totem_left.uf2 ==="
 }
@@ -86,19 +90,39 @@ build_left() {
 build_right() {
     echo "=== Building right half ==="
     west build -s "$ZMK_APP" -d build/right -b "$BOARD" -- \
-        -DSHIELD=totem_right -DZMK_CONFIG="$ZMK_CONFIG"
+        -DSHIELD=totem_right -DZMK_CONFIG="$ZMK_CONFIG" \
+        -DZMK_EXTRA_MODULES="$ZMK_EXTRA_MODULES"
     cp build/right/zephyr/zmk.uf2 "$OUTDIR/totem_right.uf2"
     echo "=== Right half: $OUTDIR/totem_right.uf2 ==="
 }
 
 draw_keymap() {
     echo "=== Drawing keymap ==="
-    mkdir -p draw
+    mkdir -p draw draw/layers
+    local layer_tmp
+    layer_tmp="$(mktemp -d)"
     keymap -c keymap_drawer.config.yaml parse \
-        -z "$SHIELD_DIR/totem.keymap" -c 10 \
-        | python3 draw/combo_layer.py > draw/totem.yaml
+        -z "$KEYMAP_FILE" -c 10 \
+        > draw/totem.raw.yaml
+    python3 draw/combo_layer.py < draw/totem.raw.yaml > draw/totem.yaml
+    python3 draw/split_layers.py draw/totem.raw.yaml "$layer_tmp" --prefix totem
     keymap -c keymap_drawer.config.yaml draw draw/totem.yaml > draw/totem.svg
+    rm -f draw/layers/*.svg
+    for layer_yaml in "$layer_tmp"/*.yaml; do
+        layer_svg="draw/layers/$(basename "${layer_yaml%.yaml}.svg")"
+        keymap -c keymap_drawer.config.yaml draw "$layer_yaml" > "$layer_svg"
+        case "$STRIP_SVG_LABELS" in
+            all)
+                python3 draw/hide_layer_labels.py --mode all < "$layer_svg" > "$layer_svg.tmp" && mv "$layer_svg.tmp" "$layer_svg"
+                ;;
+            layer)
+                python3 draw/hide_layer_labels.py --mode layer < "$layer_svg" > "$layer_svg.tmp" && mv "$layer_svg.tmp" "$layer_svg"
+                ;;
+        esac
+    done
     cp draw/totem.yaml draw/totem.svg "$OUTDIR/"
+    cp draw/layers/*.svg "$OUTDIR/"
+    rm -rf "$layer_tmp" draw/totem.raw.yaml
     echo "=== Keymap diagram: $OUTDIR/totem.svg ==="
 }
 

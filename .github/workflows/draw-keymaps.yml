@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "config/boards/shields/totem/*.keymap"
-      - "config/boards/shields/totem/*.dtsi"
+      - "config/totem.keymap"
+      - "config/*.dtsi"
       - "keymap_drawer.config.yaml"
       - "draw/combo_layer.py"
 
@@ -30,18 +30,37 @@ jobs:
           path: modules/zmk/helpers
 
       - name: Parse, post-process combos, and draw
+        env:
+          STRIP_SVG_LABELS: layer
         run: |
-          mkdir -p draw
+          mkdir -p draw draw/layers
+          layer_tmp="$(mktemp -d)"
           keymap -c keymap_drawer.config.yaml parse \
-            -z config/boards/shields/totem/totem.keymap -c 10 \
-            | python3 draw/combo_layer.py > draw/totem.yaml
+            -z config/totem.keymap -c 10 \
+            > draw/totem.raw.yaml
+          python3 draw/combo_layer.py < draw/totem.raw.yaml > draw/totem.yaml
+          python3 draw/split_layers.py draw/totem.raw.yaml "$layer_tmp" --prefix totem
           keymap -c keymap_drawer.config.yaml draw draw/totem.yaml > draw/totem.svg
+          rm -f draw/layers/*.svg
+          for layer_yaml in "$layer_tmp"/*.yaml; do
+            layer_svg="draw/layers/$(basename "${layer_yaml%.yaml}.svg")"
+            keymap -c keymap_drawer.config.yaml draw "$layer_yaml" > "$layer_svg"
+            case "$STRIP_SVG_LABELS" in
+              all)
+                python3 draw/hide_layer_labels.py --mode all < "$layer_svg" > "$layer_svg.tmp" && mv "$layer_svg.tmp" "$layer_svg"
+                ;;
+              layer)
+                python3 draw/hide_layer_labels.py --mode layer < "$layer_svg" > "$layer_svg.tmp" && mv "$layer_svg.tmp" "$layer_svg"
+                ;;
+            esac
+          done
+          rm -rf "$layer_tmp" draw/totem.raw.yaml
 
       - name: Commit updated diagrams
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add draw/totem.yaml draw/totem.svg
+          git add draw/totem.yaml draw/totem.svg draw/layers/*.svg
           git diff --cached --quiet || git commit -m "Auto-update keymap diagrams"
           git pull --rebase
           git push
