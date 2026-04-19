@@ -6,6 +6,11 @@
 
 #include "totem.dtsi"
 
+&{/chosen} {
+    /delete-property/ zephyr,console;
+    /delete-property/ zephyr,shell-uart;
+};
+
 &default_transform {
     col-offset = <5>;
 };
