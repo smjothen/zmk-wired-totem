@@ -58,46 +58,85 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-volume-off" viewBox="0 0 24 24"><path d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z" /></svg>
 </svg>
 </defs>/* end glyphs */
-<style>/* inherit to force styles through use tags */
+<style>/* force mdi glyph defs to inherit color from glyph references */
 svg path {
     fill: inherit;
 }
 
-/* font and background color specifications */
+defs svg {
+    overflow: visible;
+}
+
+defs svg path {
+    fill: currentColor;
+}
+
 svg.keymap {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-family: REM, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     font-size: 14px;
     font-kerning: normal;
     text-rendering: optimizeLegibility;
-    fill: #24292e;
+    fill: rgb(38, 50, 56);
 }
 
-/* default key styling */
 rect.key {
-    fill: #f6f8fa;
+    fill: rgb(236, 239, 241);
 }
 
 rect.key, rect.combo {
-    stroke: #c9cccf;
+    stroke: white;
     stroke-width: 1;
 }
 
-/* default key side styling, only used is draw_key_sides is set */
+.keypos-10 rect.key,
+.keypos-19 rect.key,
+.keypos-30 rect.key,
+.keypos-37 rect.key {
+    fill: rgb(207, 216, 220);
+}
+
+.keypos-10 rect.key,
+.keypos-19 rect.key {
+    stroke: rgb(236, 239, 241);
+}
+
+.keypos-12 rect.key,
+.keypos-16 rect.key,
+.keypos-31 rect.key,
+.keypos-36 rect.key {
+    fill: rgb(229, 115, 115);
+    stroke: rgb(239, 154, 154);
+}
+
+.keypos-11 rect.key,
+.keypos-18 rect.key,
+.keypos-32 rect.key,
+.keypos-35 rect.key {
+    fill: rgb(128, 203, 196);
+    stroke: rgb(178, 223, 219);
+}
+
+.keypos-30 text,
+.keypos-31 text,
+.keypos-32 text,
+.keypos-35 text,
+.keypos-36 text,
+.keypos-37 text {
+    fill: rgb(38, 50, 56);
+}
+
 rect.side {
     filter: brightness(90%);
 }
 
-/* color accent for combo boxes */
 rect.combo, rect.combo-separate {
-    fill: #cdf;
+    fill: rgb(207, 216, 220);
 }
 
-/* color accent for held keys */
 rect.held, rect.combo.held {
-    fill: #fdd;
+    fill: rgb(229, 115, 115);
 }
 
-/* color accent for ghost (optional) keys */
 rect.ghost, rect.combo.ghost {
     stroke-dasharray: 4, 4;
     stroke-width: 2;
@@ -108,16 +147,15 @@ text {
     dominant-baseline: middle;
 }
 
-/* styling for layer labels */
 text.label {
     font-weight: bold;
     text-anchor: start;
+    fill: rgb(120, 144, 156);
     stroke: white;
     stroke-width: 4;
     paint-order: stroke;
 }
 
-/* styling for optional footer */
 text.footer {
     text-anchor: end;
     dominant-baseline: auto;
@@ -126,9 +164,12 @@ text.footer {
     paint-order: stroke;
 }
 
-/* styling for combo tap, and key non-tap label text */
 text.combo, text.hold, text.shifted, text.left, text.right, text.tl, text.tr, text.bl, text.br {
     font-size: 11px;
+}
+
+text.hold, text.shifted, text.left, text.right, text.tl, text.tr, text.bl, text.br {
+    fill: rgb(96, 125, 139);
 }
 
 text.hold, text.bl, text.br {
@@ -151,46 +192,64 @@ text.right, text.tr, text.br {
 
 text.layer-activator {
     text-decoration: underline;
+    fill: rgb(38, 50, 56);
 }
 
-/* styling for hold/shifted label text in combo box */
 text.combo.hold, text.combo.shifted, text.combo.left, text.combo.right {
     font-size: 8px;
 }
 
-/* lighter symbol for transparent keys */
-text.trans {
-    fill: #7b7e81;
+text.combo.tap {
+    fill: rgb(55, 71, 79);
 }
 
-/* styling for combo dendrons */
+use.glyph {
+    fill: rgb(38, 50, 56);
+    color: rgb(38, 50, 56);
+}
+
+use.combo.glyph {
+    fill: rgb(55, 71, 79);
+    color: rgb(55, 71, 79);
+}
+
+text.combo.hold, text.combo.left, text.combo.right {
+    fill: rgb(55, 71, 79);
+}
+
+text.combo.shifted {
+    fill: rgb(120, 144, 156);
+}
+
+text.trans {
+    fill: rgb(120, 144, 156);
+    opacity: 0.4;
+}
+
 path.combo {
     stroke-width: 1;
-    stroke: gray;
+    stroke: rgb(207, 216, 220);
     fill: none;
 }
 
-/* Start Tabler Icons Cleanup */
-/* cannot use height/width with glyphs */
 .icon-tabler > path {
     fill: inherit;
     stroke: inherit;
     stroke-width: 2;
 }
-/* hide tabler's default box */
+
 .icon-tabler > path[stroke="none"][fill="none"] {
     visibility: hidden;
 }
-/* End Tabler Icons Cleanup */
 
-svg.keymap { fill: #d1d6db; }
-rect.key { fill: #3f4750; }
-rect.key, rect.combo { stroke: #60666c; }
-rect.combo, rect.combo-separate { fill: #1f3d7a; }
-rect.held, rect.combo.held { fill: #854747; }
-text.label, text.footer { stroke: black; }
-text.trans { fill: #7e8184; }
-path.combo { stroke: #7f7f7f; }
+svg.keymap { fill: rgb(38, 50, 56); }
+rect.key { fill: rgb(236, 239, 241); }
+rect.key, rect.combo { stroke: white; }
+rect.combo, rect.combo-separate { fill: rgb(207, 216, 220); stroke: rgb(207, 216, 220); }
+rect.held, rect.combo.held { fill: rgb(229, 115, 115); }
+text.label, text.footer { stroke: white; }
+text.trans { fill: rgb(120, 144, 156); opacity: 0.4; }
+path.combo { stroke: rgb(207, 216, 220); }
 </style>
 <g transform="translate(30, 0)" class="layer-Base">
 <text x="0" y="28" class="label" id="Base">Base:</text>
