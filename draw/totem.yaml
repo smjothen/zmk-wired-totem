@@ -2,16 +2,16 @@ layout: {zmk_keyboard: totem}
 layers:
   Base:
   - [Q, W, E, R, T, Y, U, I, O, P]
-  - - {t: A, h: Alt}
-    - {t: S, h: Ctrl}
-    - {t: D, h: Gui}
-    - {t: F, h: Shift}
+  - - {t: A, h: '$$mdi:apple-keyboard-option$$'}
+    - {t: S, h: '$$mdi:apple-keyboard-control$$'}
+    - {t: D, h: '$$mdi:apple-keyboard-command$$'}
+    - {t: F, h: '$$mdi:apple-keyboard-shift$$'}
     - G
     - H
-    - {t: J, h: Shift}
-    - {t: K, h: Gui}
-    - {t: L, h: Ctrl}
-    - {t: '''', h: Alt}
+    - {t: J, h: '$$mdi:apple-keyboard-shift$$'}
+    - {t: K, h: '$$mdi:apple-keyboard-command$$'}
+    - {t: L, h: '$$mdi:apple-keyboard-control$$'}
+    - {t: '''', h: '$$mdi:apple-keyboard-option$$'}
   - - '`'
     - Z
     - X
@@ -25,8 +25,8 @@ layers:
   - - {t: '?', s: '!'}
     - ''
     - ''
-    - {t: Spc, h: Nav, s: Sentence}
-    - {t: Enter, h: Fn}
+    - {t: '$$mdi:keyboard-space$$', h: Nav, s: Sentence}
+    - {t: '$$mdi:keyboard-return$$', h: Fn}
     - {t: Numword, h: Num, s: Sticky Num}
     - {t: Magic, h: Shift}
     - ''
@@ -36,21 +36,21 @@ layers:
     - Prev Win
     - Next Win
     - {type: trans}
-    - PgUp
-    - {t: Bspc, h: Ctl+Bspc}
+    - $$mdi:transfer-up$$
+    - {t: '$$mdi:backspace$$', h: 'Ctl+$$mdi:backspace$$'}
     - {t: ↑, h: Ctl+Home}
-    - {t: Del, h: Ctl+Del}
+    - {t: '$$mdi:backspace-reverse-outline$$', h: 'Ctl+$$mdi:backspace-reverse-outline$$'}
     - {type: trans}
-  - - {t: Gui, h: sticky}
-    - {t: Alt, h: sticky}
-    - {t: Shift, h: sticky}
-    - {t: Ctrl, h: sticky}
+  - - {t: '$$mdi:apple-keyboard-command$$', h: sticky}
+    - {t: '$$mdi:apple-keyboard-option$$', h: sticky}
+    - {t: '$$mdi:apple-keyboard-shift$$', h: sticky}
+    - {t: '$$mdi:apple-keyboard-control$$', h: sticky}
     - {type: trans}
-    - PgDn
+    - $$mdi:transfer-down$$
     - {t: ←, h: Home}
     - {t: ↓, h: Ctl+End}
     - {t: →, h: End}
-    - Enter
+    - {t: '$$mdi:keyboard-return$$', type: enter}
   - - {type: trans}
     - {type: trans}
     - {type: trans}
@@ -58,7 +58,7 @@ layers:
     - {type: trans}
     - {type: trans}
     - Ins
-    - Tab
+    - $$mdi:keyboard-tab$$
     - {type: trans}
     - {type: trans}
   - - {type: trans}
@@ -67,7 +67,7 @@ layers:
     - {type: held}
     - {type: trans}
     - {type: trans}
-    - CANCEL
+    - $$mdi:close-box$$
     - ''
   Fn:
   - - F12
@@ -76,19 +76,19 @@ layers:
     - F9
     - {type: trans}
     - $$mdi:volume-off$$
-    - $$mdi:skip-backward$$
+    - $$mdi:skip-previous$$
     - $$mdi:volume-high$$
-    - $$mdi:skip-forward$$
+    - $$mdi:skip-next$$
     - {type: trans}
-  - - {t: F11, h: Alt}
-    - {t: F4, h: Ctrl}
-    - {t: F5, h: Gui}
-    - {t: F6, h: Shift}
+  - - {t: F11, h: '$$mdi:apple-keyboard-option$$'}
+    - {t: F4, h: '$$mdi:apple-keyboard-control$$'}
+    - {t: F5, h: '$$mdi:apple-keyboard-command$$'}
+    - {t: F6, h: '$$mdi:apple-keyboard-shift$$'}
     - {type: trans}
     - $$mdi:play-pause$$
-    - {t: Prev Desk, h: Ctrl}
-    - {t: '$$mdi:volume-medium$$', h: Shift}
-    - {t: Next Desk, h: Alt}
+    - {t: Prev Desk, h: '$$mdi:apple-keyboard-control$$'}
+    - {t: '$$mdi:volume-low$$', h: '$$mdi:apple-keyboard-shift$$'}
+    - {t: Next Desk, h: '$$mdi:apple-keyboard-option$$'}
     - {type: trans}
   - - ''
     - F10
@@ -119,10 +119,10 @@ layers:
     - {type: trans}
     - {type: trans}
     - {type: trans}
-  - - {t: '0', h: Alt}
-    - {t: '4', h: Ctrl}
-    - {t: '5', h: Gui}
-    - {t: '6', h: Shift}
+  - - {t: '0', h: '$$mdi:apple-keyboard-option$$'}
+    - {t: '4', h: '$$mdi:apple-keyboard-control$$'}
+    - {t: '5', h: '$$mdi:apple-keyboard-command$$'}
+    - {t: '6', h: '$$mdi:apple-keyboard-shift$$'}
     - {type: trans}
     - {type: trans}
     - {type: trans}
@@ -193,9 +193,9 @@ layers:
     - {type: trans}
     - {type: trans}
     - {type: trans}
-    - PgUp
+    - $$mdi:transfer-up$$
     - Mouse ↑
-    - PgDn
+    - $$mdi:transfer-down$$
     - {type: trans}
   - - {type: trans}
     - {type: trans}
@@ -232,7 +232,7 @@ layers:
   - ['', '', '', '', '', '', '', '']
 combos:
 - p: [1, 2]
-  k: Esc
+  k: $$mdi:keyboard-esc$$
   l: [Combos]
 - p: [2, 3]
   k: Smart Mouse
@@ -260,10 +260,10 @@ combos:
   k: Paste
   l: [Combos]
 - p: [6, 7]
-  k: Bspc
+  k: {t: '$$mdi:backspace$$', type: backspace}
   l: [Combos]
 - p: [7, 8]
-  k: Del
+  k: $$mdi:backspace-reverse-outline$$
   l: [Combos]
 - p: [16, 17]
   k: {t: (, right: <}
