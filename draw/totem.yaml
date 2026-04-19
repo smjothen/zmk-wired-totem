@@ -12,7 +12,7 @@ layers:
     - {t: K, h: Gui}
     - {t: L, h: Ctrl}
     - {t: '''', h: Alt}
-  - - ''
+  - - '`'
     - Z
     - X
     - C
@@ -51,7 +51,7 @@ layers:
     - {t: ↓, h: Ctl+End}
     - {t: →, h: End}
     - Enter
-  - - ''
+  - - {type: trans}
     - {type: trans}
     - {type: trans}
     - {type: trans}
