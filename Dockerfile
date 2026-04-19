@@ -106,7 +106,9 @@ draw_keymap() {
         > draw/totem.raw.yaml
     python3 draw/combo_layer.py < draw/totem.raw.yaml > draw/totem.yaml
     python3 draw/split_layers.py draw/totem.raw.yaml "$layer_tmp" --prefix totem
+    python3 draw/make_layer_combo.py draw/totem.raw.yaml draw/totem-base-combo.yaml Base
     keymap -c keymap_drawer.config.yaml draw draw/totem.yaml > draw/totem.svg
+    keymap -c keymap_drawer.config.yaml draw draw/totem-base-combo.yaml > draw/totem-base-combo.svg
     rm -f draw/layers/*.svg
     for layer_yaml in "$layer_tmp"/*.yaml; do
         layer_svg="draw/layers/$(basename "${layer_yaml%.yaml}.svg")"
@@ -120,9 +122,10 @@ draw_keymap() {
                 ;;
         esac
     done
-    cp draw/totem.yaml draw/totem.svg "$OUTDIR/"
+    python3 draw/hide_layer_labels.py --mode layer < draw/totem-base-combo.svg > draw/totem-base-combo.svg.tmp && mv draw/totem-base-combo.svg.tmp draw/totem-base-combo.svg
+    cp draw/totem.yaml draw/totem.svg draw/totem-base-combo.svg "$OUTDIR/"
     cp draw/layers/*.svg "$OUTDIR/"
-    rm -rf "$layer_tmp" draw/totem.raw.yaml
+    rm -rf "$layer_tmp" draw/totem.raw.yaml draw/totem-base-combo.yaml
     echo "=== Keymap diagram: $OUTDIR/totem.svg ==="
 }
 
