@@ -12,7 +12,7 @@ layers:
     - {t: K, tl: '$$mdi:apple-keyboard-command$$'}
     - {t: L, br: '$$mdi:apple-keyboard-control$$'}
     - {t: '''', br: '$$mdi:apple-keyboard-option$$'}
-  - - '`'
+  - - ''
     - Z
     - X
     - C
@@ -51,7 +51,7 @@ layers:
     - {t: ↓, h: Ctl+End}
     - {t: →, h: End}
     - {t: '$$mdi:keyboard-return$$', type: enter}
-  - - {type: trans}
+  - - ''
     - {type: trans}
     - {type: trans}
     - {type: trans}
