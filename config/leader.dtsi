@@ -14,10 +14,10 @@
         }; \
     };
 
-/* Norwegian characters */
-ZMK_LEADER_SEQUENCE(no_ae,      &uc UC_DA_AE,         E)
-ZMK_LEADER_SEQUENCE(no_oe,      &uc UC_DA_OE,         O)
-ZMK_LEADER_SEQUENCE(no_aa,      &uc UC_DA_AA,         A)
+/* Norwegian characters — macOS Option-key shortcuts (no Unicode Hex Input needed) */
+ZMK_LEADER_SEQUENCE(no_ae,      &kp LA(SQT),          E)  // æ / Æ
+ZMK_LEADER_SEQUENCE(no_oe,      &kp LA(O),            O)  // ø / Ø
+ZMK_LEADER_SEQUENCE(no_aa,      &kp LA(A),            A)  // å / Å
 
 /* Greek letters */
 ZMK_LEADER_SEQUENCE(el_alpha,   &uc UC_EL_ALPHA,      E A)  // α

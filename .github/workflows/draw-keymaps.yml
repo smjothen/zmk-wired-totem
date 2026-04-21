@@ -7,6 +7,7 @@ on:
       - "config/*.dtsi"
       - "keymap_drawer.config.yaml"
       - "draw/combo_layer.py"
+      - "draw/make_overview.py"
 
 jobs:
   draw:
@@ -39,9 +40,11 @@ jobs:
             -z config/totem.keymap -c 10 \
             > draw/totem.raw.yaml
           python3 draw/combo_layer.py < draw/totem.raw.yaml > draw/totem.yaml
+          python3 draw/make_overview.py draw/totem.raw.yaml draw/totem-overview.yaml
           python3 draw/split_layers.py draw/totem.raw.yaml "$layer_tmp" --prefix totem
           python3 draw/make_layer_combo.py draw/totem.raw.yaml draw/totem-base-combo.yaml Base
           keymap -c keymap_drawer.config.yaml draw draw/totem.yaml > draw/totem.svg
+          keymap -c keymap_drawer.config.yaml draw draw/totem-overview.yaml > draw/overview.svg
           keymap -c keymap_drawer.config.yaml draw draw/totem-base-combo.yaml > draw/totem-base-combo.svg
           rm -f draw/layers/*.svg
           for layer_yaml in "$layer_tmp"/*.yaml; do
@@ -56,14 +59,15 @@ jobs:
                 ;;
             esac
           done
+          python3 draw/hide_layer_labels.py --mode layer < draw/overview.svg > draw/overview.svg.tmp && mv draw/overview.svg.tmp draw/overview.svg
           python3 draw/hide_layer_labels.py --mode layer < draw/totem-base-combo.svg > draw/totem-base-combo.svg.tmp && mv draw/totem-base-combo.svg.tmp draw/totem-base-combo.svg
-          rm -rf "$layer_tmp" draw/totem.raw.yaml draw/totem-base-combo.yaml
+          rm -rf "$layer_tmp" draw/totem.raw.yaml draw/totem-base-combo.yaml draw/totem-overview.yaml
 
       - name: Commit updated diagrams
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add draw/totem.yaml draw/totem.svg draw/totem-base-combo.svg draw/layers/*.svg
+          git add draw/totem.yaml draw/totem.svg draw/overview.svg draw/totem-base-combo.svg draw/layers/*.svg
           git diff --cached --quiet || git commit -m "Auto-update keymap diagrams"
           git pull --rebase
           git push
