@@ -30,6 +30,8 @@ Based on [urob's zmk-config](https://github.com/urob/zmk-config) with full featu
 - **Nav cluster** — arrow keys with long-tap for Home/End/start-of-doc/end-of-doc
 - **Copy/cut** — tap: copy, double-tap: cut
 - **Swapper** — alt-tab window switcher via tri-state
+- **Chordal bootloader** — hold the top five keys on either half for 3 seconds to enter bootloader
+- **XIAO RGB LED** — per-layer colors with keypress blink and modifier indication
 
 ## Combos
 
@@ -74,3 +76,5 @@ make clean
 | [zmk-leader-key](https://github.com/urob/zmk-leader-key) | Leader key sequences |
 | [zmk-tri-state](https://github.com/urob/zmk-tri-state) | Alt-tab swapper, smart mouse |
 | [zmk-unicode](https://github.com/urob/zmk-unicode) | Unicode character input |
+| [zmk-chordal-hold](https://github.com/smjothen/zmk-chordal-hold) | Per-half held chord trigger for bootloader |
+| [zmk-xiao-rp2040-led](https://github.com/smjothen/zmk-xiao-rp2040-led) | XIAO RP2040 onboard RGB LED layer/mod feedback |

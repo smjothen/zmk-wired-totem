@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+    - name: smjothen
+      url-base: https://github.com/smjothen
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -33,5 +35,13 @@ manifest:
       remote: urob
       revision: 1a6dbc797a46c4a61c3c71a7a9d013a5d5aee49e
       path: modules/zmk/unicode
+    - name: zmk-chordal-hold
+      remote: smjothen
+      revision: 3b15e130a737a173456c3d04651d3c22e403e762
+      path: modules/zmk/chordal-hold
+    - name: zmk-xiao-rp2040-led
+      remote: smjothen
+      revision: f47faac2def3e1570c01116502a6702f4de22084
+      path: modules/zmk/xiao-rp2040-led
   self:
     path: config

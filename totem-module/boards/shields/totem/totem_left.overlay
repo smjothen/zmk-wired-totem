@@ -5,6 +5,7 @@
  */
 
 #include "totem.dtsi"
+#include <zephyr/dt-bindings/pwm/pwm.h>
 
 /* Re-enable hardware UART0 for wired split (disabled by the xiao_rp2040//zmk variant) */
 &xiao_serial { status = "okay"; };
@@ -23,6 +24,70 @@
         zephyr,console = &cdc_acm_uart;
         zmk,studio-rpc-uart = &studio_rpc_uart;
     };
+
+    chordal_bootloader: chordal_bootloader {
+        compatible = "zmk,chordal-bind";
+        key-positions = <0 1 2 3>;
+        hold-time-ms = <3000>;
+        bindings = <&bootloader>;
+    };
+
+    xiao_leds: xiao_leds {
+        compatible = "zmk,xiao-rp2040-led";
+        status = "okay";
+        pwms = <&pwm 1 PWM_MSEC(1) PWM_POLARITY_INVERTED>,   /* Red:   GPIO17 → PWM ch 1 */
+               <&pwm 0 PWM_MSEC(1) PWM_POLARITY_INVERTED>,   /* Green: GPIO16 → PWM ch 0 */
+               <&pwm 9 PWM_MSEC(1) PWM_POLARITY_INVERTED>;   /* Blue:  GPIO25 → PWM ch 9 */
+        layer-display-mode = "solid";
+        layer-colors = <
+            0 0 0
+            0 96 255
+            255 120 0
+            0 220 120
+            255 0 0
+            180 0 255
+        >;
+    };
+
+    xiao_neopixel: xiao_neopixel {
+        compatible = "zmk,xiao-rp2040-neopixel";
+        status = "okay";
+        led-strip = <&ws2812>;
+        layer-display-mode = "solid";
+        modifier-display-mode = "pulse";
+        layer-colors = <
+            0 0 0
+            0 96 255
+            255 120 0
+            0 220 120
+            255 0 0
+            180 0 255
+        >;
+        keypress-blink-ms = <50>;
+        modifier-color = <255 128 0>;
+        modifier-shift-color = <0 255 255>;
+        modifier-ctrl-color = <255 0 0>;
+        modifier-alt-color = <255 255 0>;
+        modifier-gui-color = <128 0 255>;
+    };
+};
+
+&pinctrl {
+    pwm_ch0b_p17: pwm_ch0b_p17 {
+        group1 { pinmux = <PWM_0B_P17>; };
+    };
+    pwm_ch0a_p16: pwm_ch0a_p16 {
+        group1 { pinmux = <PWM_0A_P16>; };
+    };
+    pwm_ch4b_p25: pwm_ch4b_p25 {
+        group1 { pinmux = <PWM_4B_P25>; };
+    };
+};
+
+&pwm {
+    status = "okay";
+    pinctrl-0 = <&pwm_ch0b_p17 &pwm_ch0a_p16 &pwm_ch4b_p25>;
+    pinctrl-names = "default";
 };
 
 &kscan0 {

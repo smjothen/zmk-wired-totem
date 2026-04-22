@@ -5,6 +5,16 @@
  */
 
 #include "totem.dtsi"
+#include <zephyr/dt-bindings/pwm/pwm.h>
+
+/ {
+    chordal_bootloader: chordal_bootloader {
+        compatible = "zmk,chordal-bind";
+        key-positions = <6 7 8 9>;
+        hold-time-ms = <3000>;
+        bindings = <&bootloader>;
+    };
+};
 
 &default_transform {
     col-offset = <5>;
